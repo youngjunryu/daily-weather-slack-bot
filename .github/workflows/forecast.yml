@@ -1,0 +1,21 @@
+name: Forecast Weather
+on:
+  schedule:
+    - cron: "45 19 * * *" # 매일 19:45 (KST)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    name: Forecast Weather
+    steps:
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          cache: 'pip' # caching pip dependencies
+      - run: pip install -r requirements.txt
+
+      - name: Run Scripts
+        run: make forecast
