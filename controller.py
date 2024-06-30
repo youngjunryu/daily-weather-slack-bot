@@ -3,7 +3,7 @@ import sys
 
 def forecast():
     # TODO: Implement forecast function
-    print()
+    print("Forecasting...")
 
 
 def run():
