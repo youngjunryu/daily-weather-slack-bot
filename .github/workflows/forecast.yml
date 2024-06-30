@@ -1,7 +1,7 @@
 name: Forecast Weather
 on:
   schedule:
-    - cron: "40 11 * * *" # 06:00 AM KST
+    - cron: "00 21 * * *" # 06:00 AM KST
   workflow_dispatch:
 
 jobs:
