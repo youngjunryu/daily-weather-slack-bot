@@ -1,5 +1,4 @@
 import os
-from abc import ABC
 
 from infrastructure.api.slack_api_request import SlackApiRequest
 from infrastructure.parser.api_data_factory import ApiDataFactory
