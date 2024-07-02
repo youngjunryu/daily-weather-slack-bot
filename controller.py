@@ -19,7 +19,6 @@ def forecast():
     weather_api_response = weather_api_data_factory.parse_response_data(
         weather_raw_response
     )
-    weather_api_response.print()
 
     slack_api_data_factory = SlackApiDataFactory()
     api_client.send_slack_message(slack_api_data_factory.generate_request_data())
