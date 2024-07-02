@@ -1,16 +1,17 @@
 import os
+from abc import ABC
 
 from infrastructure.api.slack_api_request import SlackApiRequest
-from infrastructure.parser.api_parser_factory import ApiParserFactory
+from infrastructure.parser.api_data_factory import ApiDataFactory
 
 
-class SlackApiParserFactory(ApiParserFactory):
-    def generate_api_request(self):
+class SlackApiDataFactory(ApiDataFactory):
+    def generate_request_data(self) -> SlackApiRequest:
         slack_webhook_url = os.environ.get("SLACK_WEBHOOK_URL")
         body = self.generate_body()
         return SlackApiRequest(url=slack_webhook_url, body=body)
 
-    def generate_api_response(self):
+    def parse_response_data(self, raw_response):
         pass
 
     def generate_body(self, message="Hello, world!"):

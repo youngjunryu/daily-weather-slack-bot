@@ -1,13 +1,14 @@
 import os
 
 from infrastructure.api.weather_api_request import WeatherApiRequest
-from infrastructure.parser.api_parser_factory import ApiParserFactory
+from infrastructure.parser.api_data_factory import ApiDataFactory
 from datetime import datetime, timezone, timedelta
 
 
-class WeatherApiParserFactory(ApiParserFactory):
+class WeatherApiDataFactory(ApiDataFactory):
 
-    def generate_api_request(self):
+    def generate_request_data(self) -> WeatherApiRequest:
+        url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
         service_key = os.environ.get("SERVICE_KEY")
         num_of_rows = 217
         page_no = 1
@@ -17,13 +18,13 @@ class WeatherApiParserFactory(ApiParserFactory):
         data_type = "JSON"
 
         return WeatherApiRequest(
-            url="http",
+            url=url,
             params=self.generate_params(
                 service_key, num_of_rows, page_no, base_time, nx, ny, data_type
             ),
         )
 
-    def generate_api_response(self):
+    def parse_response_data(self, raw_response):
         pass
 
     def generate_params(
