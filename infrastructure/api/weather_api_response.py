@@ -2,14 +2,6 @@ from infrastructure.api.api_response import ApiResponse
 
 
 class WeatherApiResponse(ApiResponse):
-    class WeatherDataDTO:
-        def __init__(
-            self, temperature, base_date, precipitation_type, precipitation_probability
-        ):
-            self.temperature = temperature
-            self.sky_status = base_date
-            self.precipitation_type = precipitation_type
-            self.precipitation_probability = precipitation_probability
 
     def __init__(self, status_code):
         super().__init__(status_code)
