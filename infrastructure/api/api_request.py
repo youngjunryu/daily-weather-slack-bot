@@ -1,7 +1,24 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class ApiRequest(ABC):
 
-    def __init__(self, url):
-        self.url = url
+    @abstractmethod
+    def get_url(self):
+        pass
+
+    @abstractmethod
+    def get_headers(self):
+        pass
+
+    @abstractmethod
+    def get_params(self):
+        pass
+
+    @abstractmethod
+    def get_body(self):
+        pass
+
+    @abstractmethod
+    def parse_response(self, response):
+        pass
