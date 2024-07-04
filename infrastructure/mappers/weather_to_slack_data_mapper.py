@@ -1,8 +1,13 @@
+from utils.date import get_date
+
+
 class WeatherToSlackDataMapper:
 
     def mapper(self, api_response):
         blocks = []
-        blocks.append(self.generate_max_temperature(api_response.max_temperature))
+        blocks.append(
+            self.generate_date_and_max_temperature(api_response.max_temperature)
+        )
         blocks.append(self.generate_divider())
         for hourly_weather in api_response.hourly_weather_data:
             if hourly_weather["hour"] % 2 != 0:
@@ -25,12 +30,13 @@ class WeatherToSlackDataMapper:
     def generate_divider(self):
         return {"type": "divider"}
 
-    def generate_max_temperature(self, max_temperature):
+    def generate_date_and_max_temperature(self, max_temperature):
+        date = get_date()
         return {
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": f":tada: *오늘의 날씨* :tada: \n\n *최고 기온: {max_temperature} ℃*",
+                "text": f":tada: *{date}* :tada: \n\n *최고 기온: {max_temperature} ℃*",
             },
         }
 

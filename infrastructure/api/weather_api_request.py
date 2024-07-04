@@ -1,9 +1,8 @@
 import os
 
 from infrastructure.api.api_request import ApiRequest
-from datetime import datetime, timezone, timedelta
-
 from infrastructure.api.weather_api_response import WeatherApiResponse
+from utils.date import get_date_for_forecasting
 
 
 class WeatherApiRequest(ApiRequest):
@@ -27,7 +26,7 @@ class WeatherApiRequest(ApiRequest):
             "serviceKey": service_key,
             "numOfRows": num_of_rows,
             "pageNo": page_no,
-            "base_date": self.get_date(),
+            "base_date": get_date_for_forecasting(),
             "base_time": base_time,
             "nx": nx,
             "ny": ny,
@@ -92,8 +91,3 @@ class WeatherApiRequest(ApiRequest):
         weather_api_response.set_max_temperature(max_temperature)
 
         return weather_api_response
-
-    def get_date(self):
-        kst = timezone(timedelta(hours=9))
-        now_kst = datetime.now(kst)
-        return now_kst.strftime("%Y%m%d")
