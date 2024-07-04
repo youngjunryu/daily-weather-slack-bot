@@ -24,7 +24,6 @@ def forecast():
 
 
 def run():
-    forecast()
     if len(sys.argv) < 2:
         print("Usage: python controller.py forecast")
         return
